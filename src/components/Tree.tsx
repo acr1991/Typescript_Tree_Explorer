@@ -1,14 +1,20 @@
 import React from "react";
-type Props = {
-  name: string;
-  scientificName: string;
-  numLikes: number;
-  onLike: () => void;
-};
+import { TreeData } from "../model";
+
+// type Props = {
+//   name: string;
+//   scientificName: string;
+//   numLikes: number;
+//   onLike: () => void;
+// };
+
+interface Props extends TreeData {
+  onLike: (name: string) => void;
+}
 
 class Tree extends React.Component<Props> {
   onLike = () => {
-    this.props.incrementLike(this.props.name);
+    this.props.onLike(this.props.name);
   };
   render() {
     return (

@@ -1,16 +1,13 @@
 import React from "react";
 import Tree from "./Tree";
+import { TreeData } from "../model";
 type Props = {
   onLike: (myArg: string) => void;
 };
 type State = {
   commonName: string;
   scientificName: string;
-  trees: Array<{
-    name: string;
-    numLikes: number;
-    scientificName: string;
-  }>;
+  trees: Array<TreeData>;
 };
 class PopularTrees extends React.Component<Props, State> {
   state: State = {
@@ -43,9 +40,10 @@ class PopularTrees extends React.Component<Props, State> {
       ]
     });
   };
-  onLike = () => {
-    console.log("hi there");
-  };
+  // onLike = () => {
+  //   console.log("hi there");
+  // };
+
   incrementNumberOfLikes = (name: string) => {
     const updatedTrees = this.state.trees.map(tree => {
       if (tree.name === name) {
@@ -62,7 +60,7 @@ class PopularTrees extends React.Component<Props, State> {
         name={tree.name}
         scientificName={tree.scientificName}
         numLikes={tree.numLikes}
-        incrementLike={this.incrementNumberOfLikes}
+        onLike={this.incrementNumberOfLikes}
       />
     ));
     return (
